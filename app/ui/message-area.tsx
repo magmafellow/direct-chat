@@ -1,13 +1,13 @@
 export default function MessageArea() {
   const styles = {
-    li: "bg-neutral-700 rounded-md mb-4 py-2 px-4 text-neutral-200 font-light antialiased",
-    author: "text-blue-500",
+    li: "bg-zinc-700 rounded-md mb-4 py-2 px-4 text-neutral-200 font-light antialiased max-w-[750px]",
+    author: "text-blue-500 font-semibold tracking-wide",
     time: "text-neutral-400",
   };
 
   return (
-    <div className="w-[75%] mb-10 mx-auto h-[50vh] rounded-xl bg-neutral-600 border border-neutral-400 overflow-auto">
-      <ul className="p-16">
+    <div className="w-[95%] mb-10 mx-auto h-[50vh] rounded-xl bg-stone-800 border border-neutral-400 overflow-auto">
+      <ul className="md:p-4 lg:p-6 xl:p-8 2xl:p-10 flex flex-col gap-5 items-center">
         <li className={styles.li}>
           <div className="flex justify-between mb-2">
             <span className={styles.author}>Author1</span>

@@ -16,7 +16,7 @@ export default function MessageForm() {
   return (
     <form action="" className="flex justify-center">
       <textarea
-        className="bg-neutral-600 outline-2 focus:border-none focus:outline-orange-300 h-36 w-[50vw] p-4 text-neutral-200"
+        className="focus:drop-shadow-form bg-stone-800 outline-2 focus:border-none focus:outline-orange-300 h-36 w-[70vw] max-w-[500px] p-4 text-neutral-200"
         name="message"
         id="message"
       ></textarea>
