@@ -6,11 +6,10 @@ import MessageArea from '@/app/ui/message-area'
 import MessageForm from '@/app/ui/message-form'
 import Link from 'next/link'
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params, searchParams }: { params: { id: string }, searchParams: any }) {
   const user = await getUser()
 
   const isParticipant = await isParticipantInChat(user.user_id, params.id)
-
   if (!isParticipant) {
     return (
       <div className='container mx-auto flex flex-col items-center pt-3 gap-10'>
@@ -23,14 +22,15 @@ export default async function Page({ params }: { params: { id: string } }) {
     )
   }
 
-  const messages = await getMessages(params.id)
+  const message_chunk = searchParams.message_chunk
+  const messages = await getMessages(params.id, message_chunk)
 
   return (
     <div className="container mx-auto">
       {/* <div className="h-8 md:h-12 lg:h-16 xl:h-20"></div> */}
       <Header className="px-3" />
       <MessageArea messages={messages} />
-      <MessageForm />
+      <MessageForm userId={user.user_id} chatId={params.id} />
     </div>
   )
 }

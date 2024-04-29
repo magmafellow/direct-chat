@@ -28,19 +28,22 @@ export async function getChats(userId: string | number) {
   }
 }
 
-export async function getMessages(chatId : string | number): Promise<any[]> {
+export async function getMessages(chatId : string | number, count?: number | undefined): Promise<any[]> {
   unstable_noStore()
+  if(!count) {
+    count = 1
+  }
+  const limit = 7 * count
   try {
     const r = await pool.query(`
       SELECT users.username, messages.content, messages.time_created, messages.message_id FROM messages
       JOIN users ON messages.user_id = users.user_id
       WHERE messages.chat_id = $1
-      ORDER BY messages.time_created ASC
-      LIMIT 7
-    `, [chatId])
+      ORDER BY messages.time_created DESC
+      LIMIT $2
+    `, [chatId, limit])
     return (r.rows ? r.rows : [])
   } catch (error) {
-    console.log(error)
     console.log('failed to get messages related to specific chat by chatId')
   }
   return []

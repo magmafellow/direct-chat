@@ -5,11 +5,7 @@ import Link from 'next/link'
 import { getChats, getMessages } from '@/app/lib/data'
 import { getUser } from '../lib/dal'
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: { id: string }
-}) {
+export default async function Page() {
   const user = await getUser()
   const chats = await getChats(user.user_id)
 
