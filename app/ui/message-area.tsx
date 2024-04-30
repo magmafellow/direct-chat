@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams, usePathname, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { getTime } from '@/app/lib/utils'
 import clsx from 'clsx'
 
@@ -9,6 +9,8 @@ export default function MessageArea({ messages }: { messages: any[] }) {
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const { replace } = useRouter()
+
+  console.log(pathname, searchParams.toString())
 
   const handleChunkUp = async () => {
     const params = new URLSearchParams(searchParams)
@@ -34,12 +36,12 @@ export default function MessageArea({ messages }: { messages: any[] }) {
           <li key={message.message_id} className={styles.li}>
             <div className="flex justify-between mb-2">
               <span
-                // className={`${styles.author} ${clsx({
-                //   'text-red-300': message.role === 'root',
-                //   'text-indigo-300': message.role === 'moderator',
-                //   'text-sky-300': message.role === 'participant'
-                // })}`}
-                className={`${styles.author} text-sky-600`}
+                className={`${styles.author} ${clsx({
+                  'text-red-300': message.role === 'root',
+                  'text-indigo-300': message.role === 'moderator',
+                  'text-sky-300': message.role === 'participant'
+                })}`}
+                // className={`${styles.author} text-sky-600`}
               >
                 {message.username}
               </span>

@@ -7,9 +7,11 @@ import MessageForm from '@/app/ui/message-form'
 import Link from 'next/link'
 
 export default async function Page({ params, searchParams }: { params: { id: string }, searchParams: any }) {
+  const chatId = params.id
+  
   const user = await getUser()
 
-  const isParticipant = await isParticipantInChat(user.user_id, params.id)
+  const isParticipant = await isParticipantInChat(user.user_id, chatId)
   if (!isParticipant) {
     return (
       <div className='container mx-auto flex flex-col items-center pt-3 gap-10'>
@@ -23,7 +25,7 @@ export default async function Page({ params, searchParams }: { params: { id: str
   }
 
   const message_chunk = searchParams.message_chunk
-  const messages = await getMessages(params.id, message_chunk)
+  const messages = await getMessages(chatId, message_chunk)
 
   return (
     <div className="container mx-auto">

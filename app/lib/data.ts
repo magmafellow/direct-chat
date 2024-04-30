@@ -28,35 +28,54 @@ export async function getChats(userId: string | number) {
   }
 }
 
-export async function getMessages(chatId : string | number, count?: number | undefined): Promise<any[]> {
+export async function getMessages(
+  chatId: string | number,
+  count?: number | undefined
+): Promise<any[]> {
   unstable_noStore()
-  if(!count) {
+  if (!count) {
     count = 1
   }
   const limit = 7 * count
   try {
+    // const r = await pool.query(`
+    //   SELECT users.username, messages.content, messages.time_created, messages.message_id FROM messages
+    //   JOIN users ON messages.user_id = users.user_id
+    //   WHERE messages.chat_id = $1
+    //   ORDER BY messages.time_created DESC
+    //   LIMIT $2
+    // `, [chatId, limit])
+
     const r = await pool.query(`
-      SELECT users.username, messages.content, messages.time_created, messages.message_id FROM messages
-      JOIN users ON messages.user_id = users.user_id
-      WHERE messages.chat_id = $1
-      ORDER BY messages.time_created DESC
-      LIMIT $2
-    `, [chatId, limit])
-    return (r.rows ? r.rows : [])
+    SELECT users_chats.role AS role_id, roles.name AS role, users.user_id AS user_id, messages.chat_id AS chat_id, users.username, messages.content, messages.time_created, messages.message_id FROM messages
+    JOIN users ON messages.user_id = users.user_id
+    JOIN users_chats ON users.user_id = users_chats.user_id AND messages.chat_id = users_chats.chat_id
+    JOIN roles ON users_chats.role = roles.role_id
+    WHERE messages.chat_id = $1
+    ORDER BY messages.time_created DESC
+    `, [chatId])
+
+    return r.rows ? r.rows : []
   } catch (error) {
     console.log('failed to get messages related to specific chat by chatId')
   }
   return []
 }
 
-export async function isParticipantInChat(userId: string | number, chatId: string | number){
+export async function isParticipantInChat(
+  userId: string | number,
+  chatId: string | number
+) {
   unstable_noStore()
   try {
-    const r = await pool.query(`
+    const r = await pool.query(
+      `
       SELECT * FROM users_chats
       WHERE user_id = $1 AND chat_id = $2
-    `, [userId, chatId])
-    if(r.rows.length > 0){
+    `,
+      [userId, chatId]
+    )
+    if (r.rows.length > 0) {
       return true
     } else {
       return false
