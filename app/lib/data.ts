@@ -1,6 +1,7 @@
 import { dbSecret } from '@/key.mjs'
 import { unstable_noStore } from 'next/cache'
 import { Pool } from 'pg'
+import { roleEntry } from '@/app/lib/definitions'
 
 const pool = new Pool({
   database: 'direct_chat',
@@ -46,14 +47,17 @@ export async function getMessages(
     //   LIMIT $2
     // `, [chatId, limit])
 
-    const r = await pool.query(`
+    const r = await pool.query(
+      `
     SELECT users_chats.role AS role_id, roles.name AS role, users.user_id AS user_id, messages.chat_id AS chat_id, users.username, messages.content, messages.time_created, messages.message_id FROM messages
     JOIN users ON messages.user_id = users.user_id
     JOIN users_chats ON users.user_id = users_chats.user_id AND messages.chat_id = users_chats.chat_id
     JOIN roles ON users_chats.role = roles.role_id
     WHERE messages.chat_id = $1
     ORDER BY messages.time_created DESC
-    `, [chatId])
+    `,
+      [chatId]
+    )
 
     return r.rows ? r.rows : []
   } catch (error) {
@@ -81,6 +85,57 @@ export async function isParticipantInChat(
       return false
     }
   } catch (error) {
-    console.log('failed to check is somebody participant or not')
+    console.log('failed to check is somebody a participant or not')
+  }
+}
+
+export async function isAdminInChat(userId: string, chatId: string) {
+  try {
+    const r = await pool.query(
+      `
+      SELECT roles.name AS role, users_chats.user_id FROM users_chats
+      JOIN roles ON users_chats.role = roles.role_id
+      WHERE users_chats.user_id = $1 AND users_chats.chat_id = $2 AND roles.name LIKE 'admin'
+    `,
+      [userId, chatId]
+    )
+    if (r.rows.length > 0) {
+      return true
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.log('failed to check is somebody an admin or not')
+  }
+}
+
+export async function getRole(userId: string, chatId: string) {
+  try {
+    const r = await pool.query(
+      `
+      SELECT roles.name AS role, users_chats.user_id FROM users_chats
+      JOIN roles ON users_chats.role = roles.role_id
+      WHERE users_chats.user_id = $1 AND users_chats.chat_id = $2
+    `,
+      [userId, chatId]
+    )
+    if(r.rows.length > 0) {
+      return r.rows[0].role
+    } else {
+      return false
+    }
+  } catch (error) {
+    console.log('failed to check is somebody an admin or not')
+  }
+}
+
+export async function getRoleDescriptions(): Promise<roleEntry[] | undefined>{
+  try {
+    const r = await pool.query(`
+      SELECT * FROM roles
+    `)
+    return r.rows
+  } catch (error) {
+    console.log('failed to get role descriptions')
   }
 }

@@ -1,5 +1,5 @@
 import { z } from 'zod'
- 
+
 export const SignupFormSchema = z.object({
   username: z
     .string()
@@ -22,7 +22,7 @@ export const LoginFormSchema = z.object({
     .min(4, { message: 'Be at least 4 characters long' })
     .trim(),
 })
- 
+
 export type FormState =
   | {
       errors?: {
@@ -33,3 +33,9 @@ export type FormState =
       message?: string
     }
   | undefined
+
+export type roleEntry = {
+  role_id: number
+  name: string
+  description: string
+}

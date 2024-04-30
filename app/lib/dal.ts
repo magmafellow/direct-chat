@@ -40,7 +40,7 @@ export const getUser = cache(async () => {
     const user = r.rows[0]
     return user
   } catch (error) {
-    console.log('Failed to fetch')
+    console.log('Failed to fetch a user')
     return null
   }
 })
