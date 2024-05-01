@@ -16,6 +16,7 @@ const config: Config = {
       dropShadow: {
         '3xl': '0 0 0.77rem #fff',
         'author': '0 0 0.58rem gold',
+        'profileInfo': '0 0 0.23rem #bbb',
         'form': '0 0 0.23rem #fff',
         '4xl': [
             '0 35px 35px rgba(0, 0, 0, 0.25)',

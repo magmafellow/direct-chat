@@ -4,6 +4,7 @@ import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { getTime } from '@/app/lib/utils'
 import clsx from 'clsx'
+import Link from 'next/link'
 
 export default function MessageArea({ messages }: { messages: any[] }) {
   const searchParams = useSearchParams()
@@ -41,9 +42,8 @@ export default function MessageArea({ messages }: { messages: any[] }) {
                   'text-indigo-300': message.role === 'moderator',
                   'text-sky-300': message.role === 'participant'
                 })}`}
-                // className={`${styles.author} text-sky-600`}
               >
-                {message.username}
+                <Link className='hover:underline underline-offset-4' href={`/profile/${message.username}`}>{message.username}</Link>
               </span>
               <span className={styles.time}>
                 {getTime(message.time_created)}

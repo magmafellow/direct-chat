@@ -10,6 +10,11 @@ export default function Header({ className }: { className?: string }) {
         Direct-Chat
       </Link>
       <ul className="flex gap-3 sm:gap-4 md:gap-6 xl:gap-7">
+      <li>
+          <Link className="hover:underline text-white" href="/find-people">
+            find
+          </Link>
+        </li>
         <li>
           <Link className="hover:underline text-white" href="/chats">
             chats

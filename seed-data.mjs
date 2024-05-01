@@ -119,9 +119,9 @@ async function insertMessages(){
 }
 
 async function main() {
-  // await insertUsers()
-  // await insertChats()
-  // await insertRoles()
+  await insertUsers()
+  await insertChats()
+  await insertRoles()
   await insertUsersChats()
   await insertMessages()
 

@@ -13,7 +13,7 @@ export default async function Page() {
     <div className="container mx-auto">
       <Header className="px-3" />
       <main>
-        <ul className="pl-7">
+        <ul className="pl-3 pr-3 xl:pl-7 xl:pr-0 lg:w-[50%] mx-auto">
           {chats.length > 0 ? chats.map((chat) => (
             <li key={chat.chat_id} className="mb-4 bg-sky-950 py-1 px-2 rounded-lg flex justify-between items-center">
               <Link

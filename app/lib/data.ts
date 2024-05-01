@@ -119,7 +119,7 @@ export async function getRole(userId: string, chatId: string) {
     `,
       [userId, chatId]
     )
-    if(r.rows.length > 0) {
+    if (r.rows.length > 0) {
       return r.rows[0].role
     } else {
       return false
@@ -129,7 +129,7 @@ export async function getRole(userId: string, chatId: string) {
   }
 }
 
-export async function getRoleDescriptions(): Promise<roleEntry[] | undefined>{
+export async function getRoleDescriptions(): Promise<roleEntry[] | undefined> {
   try {
     const r = await pool.query(`
       SELECT * FROM roles
@@ -137,5 +137,38 @@ export async function getRoleDescriptions(): Promise<roleEntry[] | undefined>{
     return r.rows
   } catch (error) {
     console.log('failed to get role descriptions')
+  }
+}
+
+export async function getFilteredUsers(query: string, page: string) {
+  try {
+    console.log('finding', query)
+    if (!query) {
+      return []
+    } else {
+      const r = await pool.query('SELECT * FROM users WHERE username ILIKE $1', [query])
+      return r.rows
+    }
+  } catch (error) {
+    console.log(error)
+    console.log('failed to get filtered users')
+  }
+}
+
+export async function getUserById(userId: string){
+  try {
+    const r = await pool.query('SELECT * FROM users WHERE user_id = $1', [userId])
+    return r.rows[0]
+  } catch (error) {
+    console.log('failed to get user by id')
+  }
+}
+
+export async function getUserByUsername(username: string){
+  try {
+    const r = await pool.query('SELECT * FROM users WHERE username = $1', [username])
+    return r.rows[0]
+  } catch (error) {
+    console.log('failed to get user by id')
   }
 }
