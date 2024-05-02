@@ -118,12 +118,27 @@ async function insertMessages(){
   }
 }
 
+async function insertRequests(){
+  const pool = new pg.Pool(configForTable)
+  
+  try {
+    console.log( info('trying to insert request') )
+    const r = await pool.query('INSERT INTO requests (by_who, to_whom, to_where) VALUES (3, 1, 3);')
+    console.log( success('finished inserting request') )
+  } catch (error) {
+    console.log('failed to isnert request')
+  } finally {
+    await pool.end()
+  }
+}
+
 async function main() {
   await insertUsers()
   await insertChats()
   await insertRoles()
   await insertUsersChats()
   await insertMessages()
+  await insertRequests()
 
   console.log( success('---===DONE===---') )
 }

@@ -90,6 +90,7 @@ export async function isParticipantInChat(
 }
 
 export async function isAdminInChat(userId: string, chatId: string) {
+  unstable_noStore()
   try {
     const r = await pool.query(
       `
@@ -110,6 +111,7 @@ export async function isAdminInChat(userId: string, chatId: string) {
 }
 
 export async function getRole(userId: string, chatId: string) {
+  unstable_noStore()
   try {
     const r = await pool.query(
       `
@@ -130,6 +132,7 @@ export async function getRole(userId: string, chatId: string) {
 }
 
 export async function getRoleDescriptions(): Promise<roleEntry[] | undefined> {
+  unstable_noStore()
   try {
     const r = await pool.query(`
       SELECT * FROM roles
@@ -141,6 +144,7 @@ export async function getRoleDescriptions(): Promise<roleEntry[] | undefined> {
 }
 
 export async function getFilteredUsers(query: string, page: string) {
+  unstable_noStore()
   try {
     console.log('finding', query)
     if (!query) {
@@ -156,6 +160,7 @@ export async function getFilteredUsers(query: string, page: string) {
 }
 
 export async function getUserById(userId: string){
+  unstable_noStore()
   try {
     const r = await pool.query('SELECT * FROM users WHERE user_id = $1', [userId])
     return r.rows[0]
@@ -165,10 +170,33 @@ export async function getUserById(userId: string){
 }
 
 export async function getUserByUsername(username: string){
+  unstable_noStore()
   try {
     const r = await pool.query('SELECT * FROM users WHERE username = $1', [username])
     return r.rows[0]
   } catch (error) {
     console.log('failed to get user by id')
+  }
+}
+
+export async function getRequests(toWhom: string, byWho: string | undefined = undefined){
+  unstable_noStore()
+  try {
+    if(!byWho) {
+      const r = await pool.query('SELECT * FROM requests WHERE to_whom = $1', [toWhom])
+      return r.rows
+    }
+  } catch (error) {
+    console.log('failed to fetch requests')
+  }
+}
+
+export async function getChatById(chatId: string){
+  unstable_noStore()
+  try {
+    const r = await pool.query('SELECT * FROM chats WHERE chat_id = $1', [chatId])
+    return r.rows[0]
+  } catch (error) {
+    console.log('failed to get chat by id')
   }
 }
