@@ -149,6 +149,28 @@ async function createMessages() {
   }
 }
 
+async function createRequests(){
+  const pool = new pg.Pool(configForTable)
+  
+  try {
+    console.log( info('trying to create requests table') )
+    const r = pool.query(`
+      CREATE TABLE IF NOT EXISTS requests (
+        request_id SERIAL PRIMARY KEY,
+        by_who INTEGER REFERENCES users (user_id) ON DELETE SET NULL,
+        to_whom INTEGER REFERENCES users (user_id) ON DELETE SET NULL,
+        to_where INTEGER REFERENCES chats (chat_id) ON DELETE CASCADE,
+        time_created TIMESTAMP default NOW()
+      )
+    `)
+    console.log( success('finished creating requests table') )
+  } catch (error) {
+    console.log( err('failed to create requests table') )
+  } finally {
+    await pool.end()
+  }
+}
+
 async function main() {
   await createDataBase()
   await createUsers()
@@ -156,6 +178,7 @@ async function main() {
   await createRoles()
   await createUsersChats()
   await createMessages()
+  await createRequests()
   console.log(success('---===DONE===---'))
 }
 

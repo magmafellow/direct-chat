@@ -45,8 +45,6 @@ export async function createChat(userId: string, prevState: any, formData: FormD
   }
 
   revalidatePath('/chats')
-  redirect('/chats')
-
   return {
     message: 'chat was created'
   }
