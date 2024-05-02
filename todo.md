@@ -1,9 +1,9 @@
-# add functionality to /chats/settings/[id] (start)
+# add functionality to /chats/settings/[id] (start, not implemented)
 * you can delete participants (moderators can delete participants but cannot delete moderators and roots, roots can delete anyone)
 * 
 * 
 
-# create /find-people (half)
+# create /find-people (middle, somehow working)
 this page provides looking for functionality (on users table should be a colomn on isPrivate profile, so private profiles are not searchable)
 
 # getting started video upon dc web application (start)

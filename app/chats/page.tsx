@@ -1,9 +1,8 @@
-import MessageArea from '@/app/ui/message-area'
-import MessageForm from '@/app/ui/message-form'
 import Header from '@/app/ui/header'
 import Link from 'next/link'
 import { getChats, getMessages } from '@/app/lib/data'
-import { getUser } from '../lib/dal'
+import { getUser } from '@/app/lib/dal'
+import CreateChatForm from '@/app/ui/create-chat-form'
 
 export default async function Page() {
   const user = await getUser()
@@ -13,7 +12,7 @@ export default async function Page() {
     <div className="container mx-auto">
       <Header className="px-3" />
       <main>
-        <ul className="pl-3 pr-3 xl:pl-7 xl:pr-0 lg:w-[50%] mx-auto">
+        <ul className="pl-3 pr-3 xl:pl-7 xl:pr-0 mb-2 md:mb-4 lg:mb-6 lg:w-[50%] mx-auto">
           {chats.length > 0 ? chats.map((chat) => (
             <li key={chat.chat_id} className="mb-4 bg-sky-950 py-1 px-2 rounded-lg flex justify-between items-center">
               <Link
@@ -29,6 +28,10 @@ export default async function Page() {
             </li>
           )) : <div className='text-lg tracking-wide'>You do not have any chats</div>}
         </ul>
+        <section>
+          <CreateChatForm userId={user.user_id} />
+        </section>
+        
       </main>
     </div>
   )
