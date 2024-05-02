@@ -21,6 +21,11 @@ export default function Header({ className }: { className?: string }) {
           </Link>
         </li>
         <li>
+          <Link className="hover:underline text-white" href="/requests">
+            requests
+          </Link>
+        </li>
+        <li>
           <Link className="hover:underline text-white" href="/profile">
             profile
           </Link>

@@ -23,8 +23,9 @@ export default function CreateChatForm({ userId }: { userId: string }) {
     <form className='flex flex-col items-center' action={dispatch}>
       <h3 className='my-2 text-xl text-stone-300 italic font-extralight'>add a new chat here</h3>
       <div>
-        
-        <p></p>
+        {state?.errors?.chatname ? <p className='text-red-600 my-2 md:my-3 lg:my-4 xl:my-5'>{state?.errors?.chatname}</p> : ''}
+        {state?.dbError ? <p className='text-red-600 my-2 md:my-3 lg:my-4 xl:my-5'>{state?.dbError}</p> : ''}
+        {state?.message ? <p className='text-green-600 my-2 md:my-3 lg:my-4 xl:my-5'>{state?.message}</p> : ''}
       </div>
       <div className='mb-2 md:mb-3 lg:mb-4 xl:mb-5 '>
         <label className='lg:text-lg tracking-wider' htmlFor="chat_name">chatname: </label>

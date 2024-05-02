@@ -110,8 +110,8 @@ async function createUsersChats() {
     console.log(info('trying to create users_chats table'))
     await pool.query(`
       CREATE TABLE IF NOT EXISTS users_chats (
-        user_id INTEGER REFERENCES users (user_id),
-        chat_id INTEGER REFERENCES chats (chat_id),
+        user_id INTEGER REFERENCES users (user_id) ON DELETE CASCADE,
+        chat_id INTEGER REFERENCES chats (chat_id) ON DELETE CASCADE,
         isOwner BOOLEAN NOT NULL default FALSE,
         role INTEGER REFERENCES roles (role_id),
         PRIMARY KEY (user_id, chat_id)
@@ -133,8 +133,8 @@ async function createMessages() {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS messages (
         message_id SERIAL,
-        user_id INTEGER REFERENCES users (user_id),
-        chat_id INTEGER REFERENCES chats (chat_id),
+        user_id INTEGER REFERENCES users (user_id) ON DELETE CASCADE,
+        chat_id INTEGER REFERENCES chats (chat_id) ON DELETE CASCADE,
         content TEXT NOT NULL,
         time_created TIMESTAMP default NOW(),
         PRIMARY KEY (message_id, user_id, chat_id)
