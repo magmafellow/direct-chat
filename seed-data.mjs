@@ -123,7 +123,7 @@ async function insertRequests(){
   
   try {
     console.log( info('trying to insert request') )
-    const r = await pool.query('INSERT INTO requests (by_who, to_whom, to_where) VALUES (3, 1, 3);')
+    const r = await pool.query('INSERT INTO requests (by_who, to_whom, to_where, offered_role) VALUES (3, 1, 3, 2);')
     console.log( success('finished inserting request') )
   } catch (error) {
     console.log('failed to isnert request')

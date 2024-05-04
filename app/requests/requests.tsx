@@ -13,7 +13,7 @@ export default async function Requests() {
         <li key={request.request_id} className="mb-4 mb:mb-2 lg:mb-3mb-4 bg-sky-950 py-1 px-2 rounded-lg">
           <Link
             className="text-sky-600 hover:text-sky-700 tracking-wider font-medium text-lg md:text-xl lg:text-2xl transition"
-            href={`/requests/decide/${request.to_where}`}
+            href={`/requests/decide/${request.request_id}`}
           >
             <ChatText chatId={request.to_where} />
           </Link>

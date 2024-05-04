@@ -27,6 +27,8 @@ async function dropDB(){
     console.log( success('finished dropping database') )
   } catch (error) {
     console.log( err('failed to drop database') )
+  } finally {
+    await pool.end()
   }
 }
 

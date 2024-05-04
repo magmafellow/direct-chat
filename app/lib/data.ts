@@ -2,6 +2,7 @@ import { dbSecret } from '@/key.mjs'
 import { unstable_noStore } from 'next/cache'
 import { Pool } from 'pg'
 import { roleEntry } from '@/app/lib/definitions'
+import { trackDynamicFetch } from 'next/dist/server/app-render/dynamic-rendering'
 
 const pool = new Pool({
   database: 'direct_chat',
@@ -183,11 +184,25 @@ export async function getRequests(toWhom: string, byWho: string | undefined = un
   unstable_noStore()
   try {
     if(!byWho) {
-      const r = await pool.query('SELECT * FROM requests WHERE to_whom = $1', [toWhom])
+      const r = await pool.query(`
+        SELECT request_id, to_where, by_who, to_whom, roles.name FROM requests
+        JOIN roles ON requests.offered_role = roles.role_id
+        WHERE to_whom = $1
+      `, [toWhom])
       return r.rows
     }
   } catch (error) {
+    console.log(error)
     console.log('failed to fetch requests')
+  }
+}
+
+export async function getRequestById(requestId: string) {
+  try {
+    const r = await pool.query('SELECT * FROM requests WHERE request_id = $1', [requestId])
+    return r.rows[0]
+  } catch (error) {
+    console.log('failed to get request by id')
   }
 }
 
@@ -198,5 +213,16 @@ export async function getChatById(chatId: string){
     return r.rows[0]
   } catch (error) {
     console.log('failed to get chat by id')
+  }
+}
+
+export async function getChatByRequestId(requestId: string){
+  unstable_noStore()
+  try {
+    const r = await pool.query('SELECT to_where FROM requests WHERE request_id = $1', [requestId])
+    const r1 = await pool.query('SELECT * FROM chats WHERE chat_id = $1', [r.rows[0].to_where])
+    return r1.rows[0]
+  } catch (error) {
+    console.log('failed to get a chat by a requestId')
   }
 }

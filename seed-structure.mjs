@@ -113,7 +113,7 @@ async function createUsersChats() {
         user_id INTEGER REFERENCES users (user_id) ON DELETE CASCADE,
         chat_id INTEGER REFERENCES chats (chat_id) ON DELETE CASCADE,
         isOwner BOOLEAN NOT NULL default FALSE,
-        role INTEGER REFERENCES roles (role_id),
+        role INTEGER REFERENCES roles (role_id) default 1,
         PRIMARY KEY (user_id, chat_id)
       )
     `)
@@ -160,6 +160,7 @@ async function createRequests(){
         by_who INTEGER REFERENCES users (user_id) ON DELETE SET NULL,
         to_whom INTEGER REFERENCES users (user_id) ON DELETE SET NULL,
         to_where INTEGER REFERENCES chats (chat_id) ON DELETE CASCADE,
+        offered_role INTEGER REFERENCES roles (role_id) ON DELETE SET NULL,
         time_created TIMESTAMP default NOW()
       )
     `)
