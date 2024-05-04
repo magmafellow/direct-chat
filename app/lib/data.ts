@@ -185,7 +185,7 @@ export async function getRequests(toWhom: string, byWho: string | undefined = un
   try {
     if(!byWho) {
       const r = await pool.query(`
-        SELECT request_id, to_where, by_who, to_whom, roles.name FROM requests
+        SELECT request_id, to_where, by_who, to_whom, roles.name AS role_name FROM requests
         JOIN roles ON requests.offered_role = roles.role_id
         WHERE to_whom = $1
       `, [toWhom])
@@ -198,8 +198,9 @@ export async function getRequests(toWhom: string, byWho: string | undefined = un
 }
 
 export async function getRequestById(requestId: string) {
+  unstable_noStore()
   try {
-    const r = await pool.query('SELECT * FROM requests WHERE request_id = $1', [requestId])
+    const r = await pool.query('SELECT request_id, to_where, by_who, to_whom, roles.name AS role_name FROM requests JOIN roles ON requests.offered_role = roles.role_id  WHERE request_id = $1', [requestId])
     return r.rows[0]
   } catch (error) {
     console.log('failed to get request by id')

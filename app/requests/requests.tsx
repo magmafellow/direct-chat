@@ -15,7 +15,7 @@ export default async function Requests() {
             className="text-sky-600 hover:text-sky-700 tracking-wider font-medium text-lg md:text-xl lg:text-2xl transition"
             href={`/requests/decide/${request.request_id}`}
           >
-            <ChatText chatId={request.to_where} />
+            <ChatText chatId={request.to_where} roleName={request.role_name} />
           </Link>
         </li>
       ))}
