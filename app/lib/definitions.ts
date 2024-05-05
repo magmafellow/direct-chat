@@ -51,3 +51,14 @@ export type roleEntry = {
   name: string
   description: string
 }
+
+export const InviteFormSchema = z.object({
+  username: z
+    .string()
+    .min(2, { message: 'Name must be at least 2 characters long.' })
+    .max(20, { message: 'Name must be max 20 characters long.' }),
+  role: z
+    .number()
+    .min(1)
+    .max(3)
+})
