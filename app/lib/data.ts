@@ -207,6 +207,21 @@ export async function getRequestById(requestId: string) {
   }
 }
 
+export async function getAllUsersFromChatByChatId(chatId: string){
+  unstable_noStore()
+  try {
+    const r = await pool.query(`
+    SELECT users.user_id, users.username, users.email, roles.name as rolename FROM users_chats
+    JOIN users ON users_chats.user_id = users.user_id
+    JOIN roles ON users_chats.role = roles.role_id
+    WHERE users_chats.chat_id = $1
+    `, [chatId])
+    return r.rows
+  } catch (error) {
+    console.log('failed to get all users from a chat by a chat id')
+  }
+}
+
 export async function getChatById(chatId: string){
   unstable_noStore()
   try {

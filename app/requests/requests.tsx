@@ -19,6 +19,7 @@ export default async function Requests() {
           </Link>
         </li>
       ))}
+      {requests?.length !== 0 ? '' : <p className='text-lg text-stone-400'>You have got zero requests</p>}
     </ul>
   )
 }
