@@ -38,7 +38,6 @@ async function createUsers() {
   try {
     console.log(info('trying to create users table'))
     await pool.query(`
-
       CREATE TABLE IF NOT EXISTS users (
         user_id SERIAL PRIMARY KEY,
         username VARCHAR(20) NOT NULL UNIQUE,
