@@ -49,6 +49,7 @@ export async function signup(prevState: FormState, formData: FormData) {
 
   // 4. Create user session
   await createSession(user.user_id)
+  console.log('session created')
   // 5. Redirect user
   redirect('/')
 }
