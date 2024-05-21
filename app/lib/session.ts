@@ -8,7 +8,7 @@ const secretKey = process.env.SESSION_SECRET;
 const encodedKey = new TextEncoder().encode(secretKey);
 
 export async function encrypt(payload: any) {
-  console.log(secretKey, 'from encrypt()')
+  console.log(`secretkey - ${secretKey} encodedkey - ${encodedKey} from encrypt()`)
   return new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
@@ -24,7 +24,7 @@ export async function decrypt(session: string | undefined = "") {
     return payload;
   } catch (error) {
     console.log(error)
-    console.log("Failed to verify session");
+    console.log("Failed to verify session from decrypt()");
   }
 }
 
