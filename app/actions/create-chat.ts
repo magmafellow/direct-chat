@@ -1,6 +1,5 @@
 'use server'
 
-import { dbSecret } from '@/key.mjs'
 import { pool } from '@/database.mjs'
 import { revalidatePath } from 'next/cache'
 import { Pool } from 'pg'

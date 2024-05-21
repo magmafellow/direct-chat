@@ -1,4 +1,3 @@
-import { dbSecret } from '@/key.mjs'
 import { unstable_noStore } from 'next/cache'
 import { Pool } from 'pg'
 import { roleEntry } from '@/app/lib/definitions'

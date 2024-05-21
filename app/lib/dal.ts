@@ -4,7 +4,6 @@ import { cache } from 'react'
 import { cookies } from 'next/headers'
 import { decrypt } from '@/app/lib/session'
 import { redirect } from 'next/navigation'
-import { dbSecret } from '@/key.mjs'
 import { pool } from '@/database.mjs'
 
 

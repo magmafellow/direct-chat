@@ -10,8 +10,6 @@ import {
 import { cookies } from 'next/headers'
 import { deleteSession } from '@/app/lib/session'
 import { redirect } from 'next/navigation'
-import { dbSecret } from '@/key.mjs'
-import pg from 'pg'
 
 export async function signup(prevState: FormState, formData: FormData) {
   // 1. Validate form fields

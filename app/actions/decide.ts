@@ -1,6 +1,5 @@
 'use server'
 
-import { dbSecret } from '@/key.mjs'
 import { redirect } from 'next/navigation'
 import { pool } from '@/database.mjs'
 
