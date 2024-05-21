@@ -1,17 +1,10 @@
 'use server'
 
 import { dbSecret } from '@/key.mjs'
-import { Pool } from 'pg'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
+import { pool } from '@/database.mjs'
 
-const pool = new Pool({
-  database: 'direct_chat',
-  user: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  password: dbSecret,
-})
 
 export async function putoutUser(userId: string, chatId: string) {
   try {

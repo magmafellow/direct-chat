@@ -3,14 +3,8 @@ import { unstable_noStore } from 'next/cache'
 import { Pool } from 'pg'
 import { roleEntry } from '@/app/lib/definitions'
 import { trackDynamicFetch } from 'next/dist/server/app-render/dynamic-rendering'
+import { pool } from '@/database.mjs'
 
-const pool = new Pool({
-  database: 'direct_chat',
-  user: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  password: dbSecret,
-})
 
 export async function getChats(userId: string | number) {
   unstable_noStore()

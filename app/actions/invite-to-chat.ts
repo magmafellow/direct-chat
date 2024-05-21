@@ -6,16 +6,8 @@ import pg from 'pg'
 import { InviteFormSchema } from '../lib/definitions'
 import { getUserByUsername } from '../lib/data'
 import { getUser } from '../lib/dal'
+import { pool } from '@/database.mjs'
 
-const { Pool } = pg
-
-const pool = new Pool({
-  database: 'direct_chat',
-  user: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  password: dbSecret,
-})
 
 export async function inviteUser(
   chatId: string,

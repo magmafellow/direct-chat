@@ -5,16 +5,8 @@ import { cookies } from 'next/headers'
 import { decrypt } from '@/app/lib/session'
 import { redirect } from 'next/navigation'
 import { dbSecret } from '@/key.mjs'
+import { pool } from '@/database.mjs'
 
-import pg from 'pg'
-
-const pool = new pg.Pool({
-  database: 'direct_chat',
-  user: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  password: dbSecret,
-})
 
 export const verifySession = cache(async () => {
   const cookie = cookies().get('session')?.value

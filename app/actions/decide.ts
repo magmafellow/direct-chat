@@ -2,17 +2,8 @@
 
 import { dbSecret } from '@/key.mjs'
 import { redirect } from 'next/navigation'
-import pg from 'pg'
+import { pool } from '@/database.mjs'
 
-const { Pool } = pg
-
-const pool = new Pool({
-  database: 'direct_chat',
-  user: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  password: dbSecret,
-})
 
 export async function accept(requestId: string){
   try {

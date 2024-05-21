@@ -4,14 +4,7 @@ import { dbSecret } from '@/key.mjs'
 import { Pool } from 'pg'
 import { redirect } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
-
-const pool = new Pool({
-  database: 'direct_chat',
-  user: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  password: dbSecret,
-})
+import { pool } from '@/database.mjs'
 
 export async function quitChat(userId: string, chatId: string, prevState: any, formData: FormData){
   try {

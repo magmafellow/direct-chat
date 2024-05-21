@@ -2,15 +2,7 @@
 
 import { dbSecret } from '@/key.mjs'
 import { revalidatePath } from 'next/cache'
-import { Pool } from 'pg'
-
-const pool = new Pool({
-  database: 'direct_chat',
-  user: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  password: dbSecret,
-})
+import { pool } from '@/database.mjs'
 
 export async function sendMessage(
   userId: number | string,

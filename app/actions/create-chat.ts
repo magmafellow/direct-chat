@@ -1,18 +1,12 @@
 'use server'
 
 import { dbSecret } from '@/key.mjs'
+import { pool } from '@/database.mjs'
 import { revalidatePath } from 'next/cache'
 import { Pool } from 'pg'
 import { CreateChatSchema } from '../lib/definitions'
 import { redirect } from 'next/navigation'
 
-const pool = new Pool({
-  database: 'direct_chat',
-  user: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  password: dbSecret,
-})
 
 export async function createChat(userId: string, prevState: any, formData: FormData){
   // validating

@@ -1,6 +1,7 @@
 'use server'
 
 import { createSession } from '@/app/lib/session'
+import { pool } from '@/database.mjs'
 import {
   SignupFormSchema,
   LoginFormSchema,
@@ -11,16 +12,6 @@ import { deleteSession } from '@/app/lib/session'
 import { redirect } from 'next/navigation'
 import { dbSecret } from '@/key.mjs'
 import pg from 'pg'
-
-const { Pool } = pg
-
-const pool = new Pool({
-  database: 'direct_chat',
-  user: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  password: dbSecret,
-})
 
 export async function signup(prevState: FormState, formData: FormData) {
   // 1. Validate form fields
