@@ -8,9 +8,9 @@ function FormButton() {
 
   return (
     <button onClick={() => {
-      if(document.querySelector('#content')){
-        setTimeout(() => document.querySelector('#content').value = '', 250)
-      }
+      // if(document.querySelector('#content')){
+      //   setTimeout(() => document.querySelector('#content').value = '', 250)
+      // }
     }} className="transition py-2 px-4 bg-amber-900 hover:bg-amber-600">
       {pending ? 'processing...' : 'ok'}
     </button>
