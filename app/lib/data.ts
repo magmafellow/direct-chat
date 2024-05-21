@@ -1,5 +1,4 @@
 import { unstable_noStore } from 'next/cache'
-import { Pool } from 'pg'
 import { roleEntry } from '@/app/lib/definitions'
 import { trackDynamicFetch } from 'next/dist/server/app-render/dynamic-rendering'
 import { pool } from '@/database.mjs'
