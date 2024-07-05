@@ -31,7 +31,7 @@ export default async function Page({ params, searchParams }: { params: { id: str
     <div className="container mx-auto">
       {/* <div className="h-8 md:h-12 lg:h-16 xl:h-20"></div> */}
       <Header className="px-3" />
-      <MessageArea messages={messages} />
+      <MessageArea messages={messages} chatId={params.id} />
       <MessageForm userId={user.user_id} chatId={params.id} />
     </div>
   )
