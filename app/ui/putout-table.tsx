@@ -2,7 +2,7 @@ import { getAllUsersFromChatByChatId } from '@/app/lib/data'
 import clsx from 'clsx'
 import PutoutButton from './putout-button'
 
-function isAllowedToPutout(doerRole: string, userRole: string) {
+function isForbiddenToPutout(doerRole: string, userRole: string) {
   if (doerRole === 'moderator' && userRole === 'moderator') return true
   else if (doerRole === 'root' && userRole === 'root') return true
   else if (doerRole === 'moderator' && userRole === 'root') return true
@@ -51,7 +51,7 @@ export default async function PutoutTable({
               {user.rolename}
             </td>
             <td className="border border-stone-200">
-              <PutoutButton disabled={isAllowedToPutout(currentRole, user.rolename)} userId={user.user_id} chatId={chatId} />
+              <PutoutButton disabled={isForbiddenToPutout(currentRole, user.rolename)} userId={user.user_id} chatId={chatId} />
             </td>
           </tr>
         ))}
