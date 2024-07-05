@@ -36,7 +36,7 @@ export async function createChat(userId: string, prevState: any, formData: FormD
       dbError: 'the chat was not created. something went wrong'
     }
   }
-
+  
   revalidatePath('/chats')
   return {
     message: 'chat was created'

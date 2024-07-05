@@ -148,7 +148,7 @@ async function createMessages() {
   }
 }
 
-async function createRequests(){
+async function createRequests() {
   const pool = new pg.Pool(configForTable)
   
   try {
