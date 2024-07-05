@@ -7,14 +7,14 @@ import clsx from 'clsx'
 import Link from 'next/link'
 
 export default function MessageArea({ messages, chatId }: { messages: any[], chatId: string }) {
+  const router = useRouter()
   useEffect(() => {
-    const router = useRouter()
+    
     setTimeout(() => router.push('/chats/specific/'+chatId), 3000)
   }, [])
   
   const searchParams = useSearchParams()
   const pathname = usePathname()
-  const { replace } = useRouter()
 
   console.log(pathname, searchParams.toString())
 
@@ -27,7 +27,7 @@ export default function MessageArea({ messages, chatId }: { messages: any[], cha
       message_chunk = String(Number(message_chunk) + 1)
     }
     params.set('message_chunk', message_chunk)
-    replace(`${pathname}?${params.toString()}`)
+    router.replace(`${pathname}?${params.toString()}`)
   }
 
   const styles = {
