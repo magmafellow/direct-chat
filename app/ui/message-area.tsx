@@ -6,7 +6,12 @@ import { getTime } from '@/app/lib/utils'
 import clsx from 'clsx'
 import Link from 'next/link'
 
-export default function MessageArea({ messages }: { messages: any[] }) {
+export default function MessageArea({ messages, chatId }: { messages: any[], chatId: string }) {
+  useEffect(() => {
+    const router = useRouter()
+    setTimeout(() => router.push('/chats/specific/'+chatId), 3000)
+  }, [])
+  
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const { replace } = useRouter()
