@@ -11,7 +11,7 @@ export default function MessageArea({ messages, chatId }: { messages: any[], cha
   useEffect(() => {
     
     setTimeout(() => router.refresh(), 3000)
-  }, [])
+  })
   
   const searchParams = useSearchParams()
   const pathname = usePathname()
