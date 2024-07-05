@@ -32,7 +32,7 @@ export default function MessageArea({ messages }: { messages: any[] }) {
   }
   return (
     <div className="w-[95%] mb-10 mx-auto h-[50vh] rounded-xl bg-stone-800 border border-neutral-400 overflow-auto">
-      <ul className="relative md:p-4 lg:p-6 xl:p-8 2xl:p-10 flex flex-col gap-2 md:gap-3 lg:gap-4 xl:gap-5 items-center">
+      <ul className="relative p-1 md:p-4 lg:p-6 xl:p-8 2xl:p-10 flex flex-col gap-2 md:gap-3 lg:gap-4 xl:gap-5 items-center">
         {messages.map((message) => (
           <li key={message.message_id} className={styles.li}>
             <div className="flex justify-between mb-2">
