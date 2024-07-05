@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 
 function FormButton() {
   useEffect(() => {
-    const contentBox = document.querySelector('#content')
+    const contentBox: any = document.querySelector('#content')
     const btn = document.querySelector('#send_message')
     console.log('######')
     console.log(contentBox)
@@ -14,7 +14,7 @@ function FormButton() {
     btn?.addEventListener('click', function () {
       if (contentBox) {
         setTimeout(() => {
-          contentBox.innerHTML = ''
+          contentBox.value = ''
         }, 1000)
       }
     })
