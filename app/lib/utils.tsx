@@ -18,7 +18,11 @@ export function getTime(timeObj: any) {
 export function getDate(timeObj: any) {
   const time = new Date()
   return (
-    time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + 1
+    time.getFullYear() + '-' + ((time.getMonth() + 1) > 9
+    ? (time.getMonth() + 1)
+    : '0' + String((time.getMonth() + 1))) + '-' + ((time.getDate() + 1) > 9
+    ? (time.getDate() + 1)
+    : '0' + String((time.getDate() + 1)))
   )
 }
 
