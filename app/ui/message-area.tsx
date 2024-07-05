@@ -10,7 +10,7 @@ export default function MessageArea({ messages, chatId }: { messages: any[], cha
   const router = useRouter()
   useEffect(() => {
     
-    setTimeout(() => router.push('/chats/specific/'+chatId), 3000)
+    setTimeout(() => router.refresh(), 3000)
   }, [])
   
   const searchParams = useSearchParams()
