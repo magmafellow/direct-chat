@@ -2,7 +2,7 @@
 
 This app lets you to create a chat
 then you can add some members into it.
-A profile section is also available for you
+A profile section is also available for you.
 You can say some information about yourself.
 
 This project is being processed by vercel.
