@@ -22,7 +22,7 @@ export default async function Page() {
                 {chat.name}
               </Link>
               <div className='flex gap-5'>
-                <Link className='text-sky-400 hover:text-sky-700' href={`/chats/settings/${chat.chat_id}`}>Settings</Link>
+                <Link className='text-sky-400 hover:text-sky-700' href={`/chats/settings/${chat.chat_id}`}>Manage</Link>
                 <Link className='text-sky-400 hover:text-sky-700' href={`/chats/invite/${chat.chat_id}`}>Invite</Link>
               </div>
             </li>
