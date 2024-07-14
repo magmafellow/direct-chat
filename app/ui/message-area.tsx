@@ -70,11 +70,14 @@ export default function MessageArea({
           ))}
         </ul>
       </div>
-      <div
-        onClick={handleChunkUp}
-        className="bg-stone-700 text-stone-300 hover:bg-stone-600 py-1 px-2 cursor-pointer rounded-md tracking-wide transition"
-      >
-        more
+      <div className='pl-7'>
+        <button
+          type='button'
+          onClick={handleChunkUp}
+          className="bg-stone-700 text-stone-300 hover:bg-stone-600 py-1 px-2 cursor-pointer rounded-md tracking-wide transition"
+        >
+          more
+        </button>
       </div>
     </div>
   )
