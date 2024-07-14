@@ -28,13 +28,13 @@ export default function Header({ className }: { className?: string }) {
         <li>
           <Link
             className={clsx('lg:hover:underline text-lg', {
-              'text-sky-500': pathname.includes('/find-people'),
-              'font-semibold': pathname.includes('/find-people'),
-              'text-white': !pathname.includes('/find-people'),
+              'text-sky-500': pathname.includes('/requests'),
+              'font-semibold': pathname.includes('/requests'),
+              'text-white': !pathname.includes('/requests'),
             })}
-            href="/find-people"
+            href="/requests"
           >
-            find
+            requests
           </Link>
         </li>
         <li>
@@ -50,29 +50,38 @@ export default function Header({ className }: { className?: string }) {
           </Link>
         </li>
         <li>
-          <Link className={clsx("lg:hover:underline text-lg", {
-            'text-sky-500': pathname.includes('/requests'),
-            'font-semibold': pathname.includes('/requests'),
-            'text-white': !pathname.includes('/requests'),
-          })} href="/requests">
-            requests
-          </Link>
-        </li>
-        <li>
-          <Link className={clsx("lg:hover:underline text-lg", {
-            'text-sky-500': pathname.includes('/profile'),
-            'font-semibold': pathname.includes('/profile'),
-            'text-white': !pathname.includes('/profile'),
-          })} href="/profile">
+          <Link
+            className={clsx('lg:hover:underline text-lg', {
+              'text-sky-500': pathname.includes('/profile'),
+              'font-semibold': pathname.includes('/profile'),
+              'text-white': !pathname.includes('/profile'),
+            })}
+            href="/profile"
+          >
             profile
           </Link>
         </li>
         <li>
-          <Link className={clsx("lg:hover:underline text-lg", {
-            'text-sky-500': pathname.includes('/login'),
-            'font-semibold': pathname.includes('/login'),
-            'text-white': !pathname.includes('/login'),
-          })} href="/login">
+          <Link
+            className={clsx('lg:hover:underline text-lg', {
+              'text-sky-500': pathname.includes('/find-people'),
+              'font-semibold': pathname.includes('/find-people'),
+              'text-white': !pathname.includes('/find-people'),
+            })}
+            href="/find-people"
+          >
+            find
+          </Link>
+        </li>
+        <li>
+          <Link
+            className={clsx('lg:hover:underline text-lg', {
+              'text-sky-500': pathname.includes('/login'),
+              'font-semibold': pathname.includes('/login'),
+              'text-white': !pathname.includes('/login'),
+            })}
+            href="/login"
+          >
             login
           </Link>
         </li>
