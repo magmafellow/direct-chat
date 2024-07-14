@@ -24,10 +24,10 @@ export default function Header({ className }: { className?: string }) {
       >
         DC
       </Link>
-      <ul className="flex gap-3 sm:gap-4 md:gap-6 xl:gap-7">
+      <ul className="flex gap-6 sm:gap-7 md:gap-8 xl:gap-7">
         <li>
           <Link
-            className={clsx('hover:underline', {
+            className={clsx('lg:hover:underline text-lg', {
               'text-sky-500': pathname.includes('/find-people'),
               'font-semibold': pathname.includes('/find-people'),
               'text-white': !pathname.includes('/find-people'),
@@ -39,7 +39,7 @@ export default function Header({ className }: { className?: string }) {
         </li>
         <li>
           <Link
-            className={clsx('hover:underline', {
+            className={clsx('lg:hover:underline text-lg', {
               'text-sky-500': pathname.includes('/chats'),
               'font-semibold': pathname.includes('/chats'),
               'text-white': !pathname.includes('/chats'),
@@ -50,7 +50,7 @@ export default function Header({ className }: { className?: string }) {
           </Link>
         </li>
         <li>
-          <Link className={clsx("hover:underline", {
+          <Link className={clsx("lg:hover:underline text-lg", {
             'text-sky-500': pathname.includes('/requests'),
             'font-semibold': pathname.includes('/requests'),
             'text-white': !pathname.includes('/requests'),
@@ -59,7 +59,7 @@ export default function Header({ className }: { className?: string }) {
           </Link>
         </li>
         <li>
-          <Link className={clsx("hover:underline", {
+          <Link className={clsx("lg:hover:underline text-lg", {
             'text-sky-500': pathname.includes('/profile'),
             'font-semibold': pathname.includes('/profile'),
             'text-white': !pathname.includes('/profile'),
@@ -68,7 +68,7 @@ export default function Header({ className }: { className?: string }) {
           </Link>
         </li>
         <li>
-          <Link className={clsx("hover:underline", {
+          <Link className={clsx("lg:hover:underline text-lg", {
             'text-sky-500': pathname.includes('/login'),
             'font-semibold': pathname.includes('/login'),
             'text-white': !pathname.includes('/login'),
