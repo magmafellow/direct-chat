@@ -1,6 +1,12 @@
+'use client'
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header({ className }: { className?: string }) {
+  const pathname = usePathname()
+  console.log(pathname)
+  
   return (
     <header className={`min-h-[100px] flex items-center justify-between ${className}`}>
       <Link
