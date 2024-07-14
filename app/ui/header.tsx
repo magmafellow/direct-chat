@@ -24,7 +24,7 @@ export default function Header({ className }: { className?: string }) {
       >
         DC
       </Link>
-      <ul className="flex gap-6 sm:gap-7 md:gap-8 xl:gap-7">
+      <ul className="flex gap-5 sm:gap-6 md:gap-7">
         <li>
           <Link
             className={clsx('lg:hover:underline text-lg', {
