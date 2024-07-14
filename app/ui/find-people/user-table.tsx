@@ -12,7 +12,7 @@ export default async function UserTable({
   const users = await getFilteredUsers(query, page)
 
   return (
-    <div>
+    <div className='px-4'>
       <h3 className="text-xl text-center">Found users:</h3>
       <table className="w-full max-w-[700px] mx-auto border-collapse border">
         <thead>
