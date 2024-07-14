@@ -36,7 +36,7 @@ export default function MessageArea({ messages, chatId }: { messages: any[], cha
     time: 'text-neutral-400',
   }
   return (
-    <div className="w-[95%] mb-10 mx-auto h-[50vh] rounded-xl bg-stone-800 border border-neutral-400 overflow-auto">
+    <div className="w-[95%] relative mb-10 mx-auto h-[50vh] rounded-xl bg-stone-800 border border-neutral-400 overflow-auto">
       <ul className="relative p-1 md:p-4 lg:p-6 xl:p-8 2xl:p-10 flex flex-col gap-2 md:gap-3 lg:gap-4 xl:gap-5 items-center">
         {messages.map((message) => (
           <li key={message.message_id} className={styles.li}>
@@ -57,13 +57,14 @@ export default function MessageArea({ messages, chatId }: { messages: any[], cha
             <p>{message.content}</p>
           </li>
         ))}
-        <div
+        
+      </ul>
+      <div
           onClick={handleChunkUp}
-          className="absolute left-1 bottom-1 lg:bottom-12 lg:left-12 bg-stone-700 text-stone-300 hover:bg-stone-600 py-1 px-2 cursor-pointer rounded-md tracking-wide transition"
+          className="absolute left-1 bottom-[-32px] lg:bottom-12 lg:left-12 bg-stone-700 text-stone-300 hover:bg-stone-600 py-1 px-2 cursor-pointer rounded-md tracking-wide transition"
         >
           more
         </div>
-      </ul>
     </div>
   )
 }
