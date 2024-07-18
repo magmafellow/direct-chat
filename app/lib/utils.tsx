@@ -48,3 +48,7 @@ export function getInfoWrappedInSpan(s: string) {
     </span>
   )
 }
+
+export function checkIncludes(array: any[], str:string){
+  return array.some((value) => str.includes(value))
+}
